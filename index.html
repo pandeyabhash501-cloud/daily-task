@@ -3,64 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>To-Do List</title>
+    <title>ToDo list</title>
+    <style>
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f8ff;
+    color: #333;
+    margin: 40px;
+}
+
+h2 {
+    text-align: center;
+    color: #8b1212;
+}
+
+h3 {
+    color: #8b2e2e;
+    border-bottom: 2px solid #8b2e2e;
+}
+
+ol, ul {
+    font-size: 18px;
+    line-height: 1.6;
+}
+</style>
 </head>
 <body>
 
-    <h2>To-Do List</h2>
+    <h2>My ToDo list</h2>
 
-    <div class="input-group">
-        <input type="text" id="taskInput" placeholder="Enter a new task...">
-        <button onclick="addTask()">Add</button>
-    </div>
+    <h3>Daily Tasks</h3>
+    <ol>
+        <li>Wake up at 8:50 from bed and brush teeth</li>
+        <li>Go to school of technologia at 9:00</li>
+        <li>Attend classes</li>
+        <li>Play Games Daily and big ambition for start-up</li>
+        <li>No Study just hostel fun and big ambition for start-up</li>
+        <li>Go to sleep after watching anime</li>
+    </ol>
 
-    <ul id="taskList">
-        </ul>
+    <h3>Hobbies & Interests</h3>
+    <ul>
+        <li>Reading books</li>
+        <li>Learning new skills</li>
+        <li>Coding</li>
+        <li>Watching videos of different-different coding language</li>
+        <li>Actually work on development of my start-up dream</li>
+    </ul>
 
-    <script>
-        let tasks = JSON.parse(localStorage.getItem('myTasks')) || []
-        function renderTasks() {
-            const listElement = document.getElementById('taskList')
-            listElement.innerHTML = ''
-            tasks.forEach((task, index) => {
-                const li = document.createElement('li')
-                li.innerHTML = `
-                    <span class="${task.completed ? 'completed-text' : ''}">${task.text}</span>
-                    <div class="btn-group">
-                        <button class="done-btn" onclick="toggleComplete(${index})">
-                            ${task.completed ? 'Undo' : 'Done'}
-                        </button>
-                        <button class="delete-btn" onclick="deleteTask(${index})">Delete</button>
-                    </div>
-                `;
-                listElement.appendChild(li);
-            });
-        }
-        function addTask() {
-            const input = document.getElementById('taskInput');
-            const text = input.value.trim();
-            if (text !== "") {
-                tasks.push({
-                    text: text,
-                    completed: false
-                })
-                input.value = ""
-                saveAndRender()
-            }
-        }
-        function deleteTask(index) {
-            tasks.splice(index, 1)
-            saveAndRender()
-        }
-        function toggleComplete(index) {
-            tasks[index].completed = !tasks[index].completed;
-            saveAndRender()
-        }
-        function saveAndRender() {
-            localStorage.setItem('myTasks', JSON.stringify(tasks));
-            renderTasks()
-        }
-        renderTasks()
-    </script>
 </body>
 </html>
